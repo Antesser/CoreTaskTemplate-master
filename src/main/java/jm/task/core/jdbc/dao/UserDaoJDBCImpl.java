@@ -13,7 +13,7 @@ public class UserDaoJDBCImpl implements UserDao {
     }
 
     public void createUsersTable() {
-        String sql = "CREATE TABLE user2 (id BIGINT AUTO_INCREMENT, name VARCHAR(45), lastName VARCHAR(45), age SMALLINT, PRIMARY KEY (id))";
+        String sql = "CREATE TABLE user3 (id BIGINT AUTO_INCREMENT, name VARCHAR(45), lastName VARCHAR(45), age SMALLINT, PRIMARY KEY (id))";
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.executeUpdate(sql);
         } catch (SQLException e) {
@@ -23,14 +23,14 @@ public class UserDaoJDBCImpl implements UserDao {
 
     public void dropUsersTable() {
         try (Statement statement = connection.createStatement()) {
-            statement.execute("DROP TABLE user2");
+            statement.execute("DROP TABLE user3");
         } catch (SQLException e) {
             System.out.println("Table with such name doesn't exist.");
         }
     }
 
     public void saveUser(String name, String lastName, byte age) {
-        try (PreparedStatement prepareStatement = connection.prepareStatement("INSERT INTO user2 (name, lastName, age) VALUES (?, ?, ?)")) {
+        try (PreparedStatement prepareStatement = connection.prepareStatement("INSERT INTO user3 (name, lastName, age) VALUES (?, ?, ?)")) {
             prepareStatement.setString(1, name);
             prepareStatement.setString(2, lastName);
             prepareStatement.setByte(3, age);
@@ -49,7 +49,7 @@ public class UserDaoJDBCImpl implements UserDao {
 
     public void removeUserById(long id) {
         try (Statement statement = connection.createStatement()) {
-            statement.execute("DELETE FROM user2 WHERE id");
+            statement.execute("DELETE FROM user3 WHERE id");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -57,8 +57,8 @@ public class UserDaoJDBCImpl implements UserDao {
 
     public List<User> getAllUsers() {
         List<User> list = new ArrayList<>();
-        try (PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM user2");
-             ResultSet resultSet = preparedStatement.executeQuery("SELECT * FROM user2")) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM user3");
+             ResultSet resultSet = preparedStatement.executeQuery("SELECT * FROM user3")) {
             while (resultSet.next()) {
                 User user = new User();
                 user.setId(resultSet.getLong("id"));
@@ -81,9 +81,9 @@ public class UserDaoJDBCImpl implements UserDao {
 
     public void cleanUsersTable() {
         try (Statement statement = connection.createStatement()) {
-            statement.execute("DELETE FROM user2");
+            statement.execute("DELETE FROM user3");
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("Table with such name doesn't exist");
         }
     }
 }
