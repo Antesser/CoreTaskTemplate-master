@@ -2,6 +2,7 @@ package jm.task.core.jdbc.dao;
 
 import jm.task.core.jdbc.model.User;
 import jm.task.core.jdbc.util.Util;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -49,7 +50,7 @@ public class UserDaoJDBCImpl implements UserDao {
 
     public void removeUserById(long id) {
         try (Statement statement = connection.createStatement()) {
-            statement.execute("DELETE FROM user4 WHERE id");
+            statement.execute("DELETE FROM user4 WHERE id= " + id + ";");
         } catch (SQLException e) {
             e.printStackTrace();
         }

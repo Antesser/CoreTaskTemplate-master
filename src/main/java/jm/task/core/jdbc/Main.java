@@ -3,13 +3,14 @@ package jm.task.core.jdbc;
 import jm.task.core.jdbc.model.User;
 import jm.task.core.jdbc.service.UserService;
 import jm.task.core.jdbc.service.UserServiceImpl;
+
 import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
         UserService userService = new UserServiceImpl();
 
-       User user1 = new User("Lola", "Zhek", (byte) 23);
+        User user1 = new User("Lola", "Zhek", (byte) 23);
         User user2 = new User("Alex", "Cheburek", (byte) 42);
         User user3 = new User("Kir", "Mek", (byte) 19);
         User user4 = new User("Lera", "Kek", (byte) 43);
@@ -25,8 +26,9 @@ public class Main {
         userService.saveUser(user4.getName(), user4.getLastName(), user4.getAge());
         System.out.println("User " + user4.getName() + " added into the DB.");
 
+        userService.removeUserById(4);
         List<User> users = userService.getAllUsers();
-        for (User us: users) {
+        for (User us : users) {
             System.out.println(us);
         }
 
