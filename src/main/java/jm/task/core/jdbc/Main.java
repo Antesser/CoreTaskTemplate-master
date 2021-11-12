@@ -30,7 +30,7 @@ public class Main {
             System.out.println(us);
         }
 
-        userService.cleanUsersTable();
-        userService.dropUsersTable();
+        /*userService.cleanUsersTable();
+        userService.dropUsersTable();*/
     }
 }
