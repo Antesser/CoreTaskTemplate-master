@@ -25,8 +25,9 @@ public class Main {
         System.out.println("User " + user3.getName() + " added into the DB.");
         userService.saveUser(user4.getName(), user4.getLastName(), user4.getAge());
         System.out.println("User " + user4.getName() + " added into the DB.");
+//как бы в задании не нужно удалять пользователя по ID, но зачем-то реализован метод
+        userService.removeUserById(2);
 
-        userService.removeUserById(4);
         List<User> users = userService.getAllUsers();
         for (User us : users) {
             System.out.println(us);

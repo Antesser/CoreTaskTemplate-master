@@ -19,7 +19,7 @@ public class Util {
         try {
             conn = DriverManager.getConnection(connectionURL, userName,
                     password);
-        } catch (SQLException e) {
+        } catch (SQLException | NullPointerException e) {
             e.printStackTrace();
         }
         System.out.println("Connected database successfully...");
