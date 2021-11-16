@@ -11,7 +11,7 @@ public class Util {
     private static final String password = "u1727578l";
 
 
-    public static Connection getMySQLConnection()  {
+    public static Connection getMySQLConnection() throws NullPointerException{
 
         String connectionURL = "jdbc:mysql://" + hostName + ":3306/" + dbName+"?useSSL=false";
 
@@ -19,7 +19,7 @@ public class Util {
         try {
             conn = DriverManager.getConnection(connectionURL, userName,
                     password);
-        } catch (SQLException | NullPointerException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         System.out.println("Connected database successfully...");
