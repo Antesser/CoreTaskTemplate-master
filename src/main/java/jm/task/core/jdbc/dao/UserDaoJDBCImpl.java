@@ -19,6 +19,8 @@ public class UserDaoJDBCImpl implements UserDao {
             preparedStatement.executeUpdate(sql);
         } catch (SQLException e) {
             System.out.println("Table with such name already exists.");
+        }catch (NullPointerException ex){
+            ex.printStackTrace();
         }
     }
 
@@ -27,6 +29,8 @@ public class UserDaoJDBCImpl implements UserDao {
             statement.execute("DROP TABLE user4");
         } catch (SQLException e) {
             System.out.println("Table with such name doesn't exist.");
+        }catch (NullPointerException ex){
+            ex.printStackTrace();
         }
     }
 
@@ -42,7 +46,7 @@ public class UserDaoJDBCImpl implements UserDao {
             e.printStackTrace();
             try {
                 connection.rollback();
-            } catch (SQLException ex) {
+            } catch (SQLException | NullPointerException ex) {
                 ex.printStackTrace();
             }
         }
@@ -51,7 +55,7 @@ public class UserDaoJDBCImpl implements UserDao {
     public void removeUserById(long id) {
         try (Statement statement = connection.createStatement()) {
             statement.execute("DELETE FROM user4 WHERE id= " + id + ";");
-        } catch (SQLException e) {
+        } catch (SQLException | NullPointerException e) {
             e.printStackTrace();
         }
     }
@@ -73,7 +77,7 @@ public class UserDaoJDBCImpl implements UserDao {
             e.printStackTrace();
             try {
                 connection.rollback();
-            } catch (SQLException ex) {
+            } catch (SQLException | NullPointerException ex) {
                 ex.printStackTrace();
             }
         }
@@ -85,6 +89,8 @@ public class UserDaoJDBCImpl implements UserDao {
             statement.execute("DELETE FROM user4");
         } catch (SQLException e) {
             System.out.println("Table with such name doesn't exist");
+        }catch (NullPointerException ex){
+            ex.printStackTrace();
         }
     }
 }
